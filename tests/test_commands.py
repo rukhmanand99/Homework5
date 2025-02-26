@@ -37,4 +37,3 @@ def test_invoker_invalid_command(invoker):
 def test_divide_catches_zero_division_error(invoker):
     """Test if ZeroDivisionError is properly caught in divide command."""
     assert invoker.execute("divide", 0, 0) == "Error: Division by zero"
-
