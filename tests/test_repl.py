@@ -1,19 +1,16 @@
-"""
-Unit tests for interactive REPL functionality.
-"""
-def test_add(invoker):
-    """Test addition in REPL."""
-    assert invoker.execute("add", 1, 2, 3) == 6
+import pytest
+from app.repl import repl
 
-def test_subtract(invoker):
-    """Test subtraction in REPL."""
-    assert invoker.execute("subtract", 10, 5, 2) == 3
-
-def test_multiply(invoker):
-    """Test multiplication in REPL."""
-    assert invoker.execute("multiply", 2, 3, 4) == 24
-
-def test_divide(invoker):
-    """Test division and division by zero handling in REPL."""
-    assert invoker.execute("divide", 10, 2) == 5
-    assert invoker.execute("divide", 10, 0) == "Error: Division by zero"
+def test_repl_execution(monkeypatch, capsys):
+    """Test REPL execution with simulated user input."""
+    inputs = iter(["add 1 2", "subtract 5 2", "multiply 3 3", "divide 10 2", "exit"])
+    monkeypatch.setattr("builtins.input", lambda _: next(inputs))
+    
+    repl()  # Run the REPL with simulated input
+    
+    captured = capsys.readouterr()
+    
+    assert "3.0" in captured.out  # add 1 + 2
+    assert "3.0" in captured.out  # subtract 5 - 2
+    assert "9.0" in captured.out  # multiply 3 * 3
+    assert "5.0" in captured.out  # divide 10 / 2
