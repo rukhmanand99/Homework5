@@ -15,6 +15,3 @@ def repl():
         except ValueError:
             result = "Invalid input. Please enter numbers."
         print(result)
-
-if __name__ == "__main__":
-    repl()
