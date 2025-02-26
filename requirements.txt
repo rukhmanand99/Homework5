@@ -1,5 +1,5 @@
 astroid==3.0.2
-coverage==7.4.1
+coverage==7.6.1
 dill==0.3.8
 exceptiongroup==1.2.0
 Faker==23.1.0
